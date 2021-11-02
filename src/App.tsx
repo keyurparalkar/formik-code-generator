@@ -1,4 +1,5 @@
 import { Button, Spinner } from '@blueprintjs/core';
+import Counter from './components/Counter';
 
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="App">
       <Button title="Hold on" text="Hold On"/>
       <Button icon="refresh" />
-      <Spinner />
+      <Counter />
     </div>
   );
 }

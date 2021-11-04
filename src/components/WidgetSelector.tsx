@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addVariableToValObj, addWidget } from "../store/slices/main.slices";
+import { addVariableToValObj, addWidget, removeLastWidget } from "../store/slices/main.slices";
 import Counter from "./Counter";
 
 const WidgetSelector = () => {
@@ -12,12 +12,16 @@ const WidgetSelector = () => {
     dispatch(addWidget());
     dispatch(addVariableToValObj());
   };
+
+  const removeTextField = () => {
+      dispatch(removeLastWidget());
+  }
   return (
     <>
       <Counter
         counterValue={textFieldCounter}
         onIncrement={addTextField}
-        onDecrement={() => {}}
+        onDecrement={removeTextField}
         counterLabel="Text Field"
       />
     </>

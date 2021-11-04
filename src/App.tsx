@@ -1,7 +1,7 @@
 import { Alignment, Navbar } from "@blueprintjs/core";
-import CodeGenerator from "./components/CodeGenerator";
-import Counter from "./components/Counter";
 import styled from "styled-components";
+import CodeGenerator from "./components/CodeGenerator";
+import WidgetSelector from "./components/WidgetSelector";
 
 const Container = styled.div`
   display: flex;
@@ -9,15 +9,16 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  & .left-pan,.right-pan{
+  & .left-pan,
+  .right-pan {
     width: 50%;
   }
 
-  & .left-pan{
+  & .left-pan {
     height: 100vh;
   }
 
-  & .right-pan pre{
+  & .right-pan pre {
     overflow-y: visible;
     height: 100vh;
   }
@@ -34,8 +35,7 @@ const App = () => {
       </Navbar>
       <Container>
         <div className="left-pan">
-          <label htmlFor="">Text Field</label>
-          <Counter />
+          <WidgetSelector />
         </div>
         <div className="right-pan">
           <CodeGenerator />

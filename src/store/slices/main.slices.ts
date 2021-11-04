@@ -9,7 +9,7 @@ export const mainSlice = createSlice({
       name: null,
       validationEntry: null,
       initialValue: null,
-      domAttributes: null,
+      formElements: null,
     },
     validationVariablesObj: [],
   },
@@ -23,22 +23,30 @@ export const mainSlice = createSlice({
         name: `textField${state.textFieldCounter}`,
         validationEntry: `Yup.string().required('textField${state.textFieldCounter} is required')`,
         initialValue: "",
-        domAttributes: `
+        formElements: `
+            <label for="textField${state.textFieldCounter}">textField${state.textFieldCounter}: </label>
+              <input
+                  type="text"
+                  id="textField${state.textFieldCounter}"
+                  name="textField${state.textFieldCounter}"
+                  onChange={handleChange("textField${state.textFieldCounter}")}
+              />
             {errors?.textField${state.textFieldCounter} && (
               <span style={{ display: "block", marginLeft: "8px", color: "red" }}>
                 {errors?.textField${state.textFieldCounter}}
               </span>
-            )}`,
+            )}
+            `,
       };
 
       state.newWdiget = tempWidget;
       state.allWidgets.push(tempWidget);
     },
     removeLastWidget: (state: any) => {
-        if(state.textFieldCounter > 0){
-            state.textFieldCounter -= 1;
-            state.allWidgets.pop();
-        }
+      if (state.textFieldCounter > 0) {
+        state.textFieldCounter -= 1;
+        state.allWidgets.pop();
+      }
     },
     addVariableToValObj: (state: any) => {
       state.validationVariablesObj.push(
@@ -48,6 +56,7 @@ export const mainSlice = createSlice({
   },
 });
 
-export const { addWidget, addVariableToValObj, removeLastWidget } = mainSlice.actions;
+export const { addWidget, addVariableToValObj, removeLastWidget } =
+  mainSlice.actions;
 
 export default mainSlice.reducer;

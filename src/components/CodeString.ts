@@ -12,6 +12,7 @@ interface ICodeString {
 const CodeString = ({ allWidgets }: ICodeString) => {
   let yupValues: {} = {};
   let initValues: {} = {};
+  let formElements: [] = [];
 
   if (allWidgets) {
     for (let i of allWidgets) {
@@ -19,6 +20,8 @@ const CodeString = ({ allWidgets }: ICodeString) => {
       yupValues[i.name] = i.validationEntry;
       //@ts-ignore
       initValues[i.name] = "";
+      //@ts-ignore
+      formElements.push(i.formElements);
     }
   }
 
@@ -41,32 +44,7 @@ const CodeString = ({ allWidgets }: ICodeString) => {
             >
             {({ handleSubmit, handleChange, errors, resetForm, values }) => (
                 <form onSubmit={() => handleSubmit()}>
-                <label for="textField1">textField1: </label>
-                <input
-                    type="text"
-                    id="textField1"
-                    name="textField1"
-                    onChange={handleChange("textField1")}
-                />
-                {errors?.textField1 && (
-                    <span style={{ display: "block", marginLeft: "8px", color: "red" }}>
-                    {errors?.textField1}
-                    </span>
-                )}
-
-                <label for="textField1">textField1: </label>
-                <input
-                    type="text"
-                    id="textField1"
-                    name="textField1"
-                    onChange={handleChange("textField1")}
-                />
-                {errors?.textField1 && (
-                    <span style={{ display: "block", marginLeft: "8px", color: "red" }}>
-                    {errors?.textField1}
-                    </span>
-                )}
-
+                ${formElements.map((item :any) => item).join("\n")}
                 <button onClick={handleSubmit}>Submit</button>
                 </form>
             )}

@@ -35,8 +35,10 @@ export const mainSlice = createSlice({
       state.allWidgets.push(tempWidget);
     },
     removeLastWidget: (state: any) => {
-      state.textFieldCounter -= 1;
-      state.allWidgets.pop();
+        if(state.textFieldCounter > 0){
+            state.textFieldCounter -= 1;
+            state.allWidgets.pop();
+        }
     },
     addVariableToValObj: (state: any) => {
       state.validationVariablesObj.push(
